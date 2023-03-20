@@ -1,5 +1,5 @@
 """We are here creating our own coustom exception"""
-
+from src.logger import logging
 import sys
 
 def error_message_detail(error,error_detail:sys):
@@ -9,11 +9,12 @@ def error_message_detail(error,error_detail:sys):
         file_name, exc_tb.tb_lineno,str(error)
     )
 
-class CustomException(Exception):
+class MyException(Exception):
     def __init__(self, error_message,error_detail:sys):
         super().__init__(error_message)
         self.error_message = error_message_detail(error_detail=error_detail,error=error_message )
 
     def __str__(self):
+        logging.info(self.error_message)
         return self.error_message
     
